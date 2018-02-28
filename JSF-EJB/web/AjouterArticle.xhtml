@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./homee.xhtml">
+
+            <ui:define name="top">
+                 <ui:insert name="top"><h1 align="center"> Gestion des ventes </h1></ui:insert>
+            </ui:define>
+
+            <ui:define name="left">
+                 <ui:insert name="left"><a href="AjouterArticle.xhtml">Gestion Articles</a></ui:insert>
+            </ui:define>
+
+            <ui:define name="content">
+               
+                <h:form>
+                    
+                    
+                    
+                    <h:panelGrid columns="2">
+                        
+                        
+                        <h:outputText value="Code"/><h:inputText value="#{articleBean.article.id}"/>
+                        <h:outputText value="Nom"/><h:inputText value="#{articleBean.article.nom}"/>
+                        <h:outputText value="Prix"/><h:inputText value="#{articleBean.article.prix}"/>
+                        <h:commandButton value="Ajouter" action="#{articleBean.ajouterArticle()}"/>
+                        
+                        
+                    </h:panelGrid>
+                    
+                </h:form>
+              
+
+                <f:view>
+
+
+                    <h:form>
+                        <h1><h:outputText value="Liste des articles"/></h1>
+                        <h:dataTable value="#{articleBean.afficherArticles()}" var="item">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nom"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nom}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Prix"/>
+                                </f:facet>
+                                <h:outputText value="#{item.prix}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
+
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
